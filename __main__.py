@@ -150,8 +150,6 @@ for frame in range(max_frames):
     board = board * np.isin(neighbours, [2, 3]) + (board == 0) * (neighbours == 3)    
     if np.array_equal(memory[frame % 2], board):
         print(f'breaking early on frame {frame}')
-        a = memory[frame % 2]
-        b = board
         break
     memory[frame % 2] = board
 
