@@ -3,28 +3,16 @@
     Returns:
         _type_: _description_
 """
-import pygame
 import numpy as np
 from scipy.ndimage import convolve
-from src.pattern import PatternInventory
-
-
-class VideoSettings():
-    """_summary_
-
-    Args:
-        Enum (_type_): _description_
-    """
-    WIDTH = 800
-    HEIGHT = 800
-    PIXEL_SIZE = 2
-    FPS = 60
+# from pattern import PatternInventory
+from src.config import VideoSettings
 
 
 class Board:
     """_summary_
     """
-    def __init__(self, patterns: PatternInventory):
+    def __init__(self, patterns):
         self.zeros = np.zeros(shape=(VideoSettings.HEIGHT, VideoSettings.WIDTH),
                               dtype=np.uint8)
         self.board = Board.downsample(self.zeros)
@@ -91,61 +79,3 @@ class Board:
 
         self.board = live_cells + dead_cells
         return Board.upsample(self.board).T * 255
-
-
-class Game(object):
-    """_summary_
-
-    Args:
-        object (_type_): _description_
-    """
-    def __init__(self, board: Board):
-        self.board = board
-
-    def process_events(self):
-        """_summary_
-
-        Returns:
-            _type_: _description_
-        """
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                return True
-
-    def display_frame(self, screen):
-        """_summary_
-
-        Args:
-            screen (_type_): _description_
-        """
-        array = self.board.get_next_frame()
-        surfarray = pygame.surfarray.make_surface(array)
-        screen.blit(surfarray, (0, 0))
-        pygame.display.update()
-
-
-def main():
-    """_summary_
-    """
-    pygame.init()
-    pygame.display.set_caption("Game of life")
-    pygame.mouse.set_visible(False)
-    screen = pygame.display.set_mode(size=(VideoSettings.WIDTH,
-                                           VideoSettings.HEIGHT))
-    clock = pygame.time.Clock()
-
-    patterns = PatternInventory().get_patterns(n=200)
-    board = Board(patterns)
-    game = Game(board)
-
-    end = False
-
-    while not end:
-        end = game.process_events()
-        game.display_frame(screen)
-        clock.tick(VideoSettings.FPS)
-
-    pygame.quit()
-
-if __name__ == "__main__":
-    main()
