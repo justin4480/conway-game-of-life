@@ -8,5 +8,5 @@ class VideoSettings():
     """
     WIDTH = 1920
     HEIGHT = 1080
-    PIXEL_SIZE = 10
+    PIXEL_SIZE = 2
     FPS = 60
