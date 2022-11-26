@@ -3,7 +3,7 @@
 import pygame
 from src.board import Board
 from src.game import Game
-from src.pattern import PatternInventory
+from src import pattern
 from src.config import VideoSettings
 
 
@@ -17,8 +17,9 @@ def main():
                                            VideoSettings.HEIGHT))
     clock = pygame.time.Clock()
 
-    patterns = PatternInventory().get_patterns(n=500)
-    board = Board(patterns)
+    patterns = pattern.get_patterns(n_patterns=3000, probabilities=[0.1,0.1,0.8])
+    player = pattern.player
+    board = Board(patterns, player)
     game = Game(board)
 
     end = False
