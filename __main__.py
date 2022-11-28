@@ -1,35 +1,47 @@
-"""_summary_
-    """
+from itertools import count
 import pygame
-from src.board import Board
-from src.game import Game
-from src import pattern
-from src.config import VideoSettings
+from src.view import View
+from src.world import World
+from src.simulator import game_of_life
+from src.pattern import get_patterns
+
+
+WIDTH = 500
+HEIGHT = 500
+PIXEL_SIZE = 1
+FPS = -1
+N_PATTERNS = 500
 
 
 def main():
-    """_summary_
-    """
     pygame.init()
     pygame.display.set_caption("Game of life")
     pygame.mouse.set_visible(False)
-    screen = pygame.display.set_mode(size=(VideoSettings.WIDTH,
-                                           VideoSettings.HEIGHT))
     clock = pygame.time.Clock()
+    font = pygame.font.SysFont("Arial", 12)
+    screen = pygame.display.set_mode(size=(WIDTH, HEIGHT))
 
-    patterns = pattern.get_patterns(n_patterns=3000, probabilities=[0.1,0.1,0.8])
-    player = pattern.player
-    board = Board(patterns, player)
-    game = Game(board)
+    patterns = get_patterns(n_patterns=N_PATTERNS, p=[.1, .1, .8])
+    world = World(int(HEIGHT/PIXEL_SIZE), int(WIDTH/PIXEL_SIZE))
+    world.populate_world(patterns)
+    sim = game_of_life(world.array)
+    view = View(sim)
 
-    end = False
+    def upsample(array):
+        return array.repeat(PIXEL_SIZE, axis=0).repeat(PIXEL_SIZE, axis=1).T * 255
 
-    while not end:
-        end = game.process_events()
-        game.display_frame(screen)
-        clock.tick(VideoSettings.FPS)
+    terminate = False
+    i = count(1)
+
+    while not terminate:
+        fps = f'frame {next(i)} | fps: {str(int(clock.get_fps()))}'
+        fps_text = font.render(fps, 1, pygame.Color("coral"))
+        terminate = view.process_events()
+        view.display_frame(screen, fps_text, upsample)
+        clock.tick(FPS)
 
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()

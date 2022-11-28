@@ -1,6 +1,6 @@
 import pygame
-from src.config import VideoSettings
-
+from old.config import VideoSettings
+import numpy as np
 
 class Game(object):
     def __init__(self, board):
@@ -17,15 +17,19 @@ class Game(object):
                 return True
         if self.check_player_collide():
             return True
+        if self.check_win():
+            return True
         keys = pygame.key.get_pressed()
+        # speed = np.random.randint(1, 15)
+        speed = 3
         if keys[pygame.K_LEFT]:
-            self.player_sprite.rect.x -= 2
+            self.player_sprite.rect.x -= speed
         if keys[pygame.K_RIGHT]:
-            self.player_sprite.rect.x += 2
+            self.player_sprite.rect.x += speed
         if keys[pygame.K_UP]:
-            self.player_sprite.rect.y -= 2
+            self.player_sprite.rect.y -= speed
         if keys[pygame.K_DOWN]:
-            self.player_sprite.rect.y += 2
+            self.player_sprite.rect.y += speed
 
     def display_frame(self, screen):
         surfarray = pygame.surfarray.make_surface(self.next_frame_array)
@@ -33,9 +37,13 @@ class Game(object):
         self.all_sprites_list.draw(screen)
         pygame.display.update()
 
+    def check_win(self):
+        return self.player_sprite.rect.y > VideoSettings.HEIGHT
+
     def check_player_collide(self):
-        return self.next_frame_array[self.player_sprite.rect.x:self.player_sprite.rect.x+5,
-                                     self.player_sprite.rect.y:self.player_sprite.rect.y+5].sum() > 0
+        return self.next_frame_array[
+            self.player_sprite.rect.x:self.player_sprite.rect.x+5,
+            self.player_sprite.rect.y:self.player_sprite.rect.y+5].sum() > 1
 
 
 class Player(pygame.sprite.Sprite):
