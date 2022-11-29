@@ -35,11 +35,9 @@ class World:
         self.array[x_start:x_end+1, y_start:y_end+1] = 0
 
 
-class Resize():
-    @staticmethod
-    def upsample(array: np.array, factor):
-        return array.repeat(factor, axis=0).repeat(factor, axis=1)
+def upsample(array: np.array, factor):
+    return array.repeat(factor, axis=0).repeat(factor, axis=1)
 
-    @staticmethod
-    def downsample(array: np.array, factor):
-        return array[:: factor, :: factor]
+
+def downsample(array: np.array, factor):
+    return array[:: factor, :: factor]
