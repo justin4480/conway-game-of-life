@@ -7,11 +7,15 @@ from src.simulator import game_of_life
 from src.view import View
 from src.world import World, upsample
 
+# Screen config
 WIDTH = 500
 HEIGHT = 500
 PIXEL_SIZE = 1
 FPS = 120
+
+# Pattern config
 N_PATTERNS = 500
+P_PATTERNS = [0.1, 0.1, 0.8]
 
 
 def main():
@@ -22,7 +26,7 @@ def main():
     font = pygame.font.SysFont("Arial", 12)
     screen = pygame.display.set_mode(size=(WIDTH, HEIGHT))
 
-    patterns = get_patterns(n_patterns=N_PATTERNS, proba=[0.1, 0.1, 0.8])
+    patterns = get_patterns(n_patterns=N_PATTERNS, p_patterns=P_PATTERNS)
     world = World(int(HEIGHT / PIXEL_SIZE), int(WIDTH / PIXEL_SIZE))
     world.populate_world(patterns)
     simulator = game_of_life(world.array)

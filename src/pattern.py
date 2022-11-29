@@ -28,11 +28,11 @@ class Pattern:
         )
 
 
-def get_patterns(n_patterns: int = 1, proba: list = None, replace: bool = True) -> list:
-    proba = proba if proba else len(PATTERN_INVENTORY) * [1]
-    proba = [proba[pattern.patterntype.value] for pattern in PATTERN_INVENTORY]
-    proba /= np.sum(proba)
-    patterns = np.random.choice(a=PATTERN_INVENTORY, size=n_patterns, p=proba, replace=replace)
+def get_patterns(n_patterns: int = 1, p_patterns: list = None, replace: bool = True) -> list:
+    p_patterns = p_patterns if p_patterns else len(PATTERN_INVENTORY) * [1]
+    p_patterns = [p_patterns[pattern.patterntype.value] for pattern in PATTERN_INVENTORY]
+    p_patterns /= np.sum(p_patterns)
+    patterns = np.random.choice(a=PATTERN_INVENTORY, size=n_patterns, p=p_patterns, replace=replace)
     return [pattern.get_array() for pattern in patterns]
 
 
