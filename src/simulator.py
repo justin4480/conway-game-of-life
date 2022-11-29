@@ -1,4 +1,3 @@
-import tensorflow as tf
 import numpy as np
 from scipy.ndimage import convolve
 
@@ -26,22 +25,29 @@ def game_of_life(array) -> np.array:
         yield array
 
 
-def game_of_life_tensorflow(array: np.array) -> np.array:
-    dtype = tf.int32
-    x_original, y_original = array.shape
-    filters = tf.constant(tf.reshape([[1, 1, 1], [1, 0, 1], [1, 1, 1]], (3, 3, 1, 1)))
-    array = tf.constant(tf.reshape(tf.cast(array, dtype=dtype), (1, x_original, y_original, 1)))
+# Tensorflow implementation works, but have commented out as this is slower than
+# the numpy / scipy implementation when ran on a CPU.  Yet to benchmark, but would
+# expect tenorflow to outperform when running tensorflow on a GPU.  If enabled
+# although not in the requements.txt tensorflow will be needed.
 
-    while True:
-        neighbours = tf.nn.conv2d(array, filters, strides=[1, 1], padding="SAME")
-        live_cells_2 = tf.math.multiply(
-            tf.cast(array == 1, dtype=dtype), tf.cast(neighbours == 2, dtype=dtype)
-        )
-        live_cells_3 = tf.math.multiply(
-            tf.cast(array == 1, dtype=dtype), tf.cast(neighbours == 3, dtype=dtype)
-        )
-        dead_cells_3 = tf.math.multiply(
-            tf.cast(array == 0, dtype=dtype), tf.cast(neighbours == 3, dtype=dtype)
-        )
-        array = live_cells_2 + live_cells_3 + dead_cells_3
-        yield array.numpy().reshape(x_original, y_original)
+# import tensorflow as tf
+
+# def game_of_life_tensorflow(array: np.array) -> np.array:
+#     dtype = tf.int32
+#     x_original, y_original = array.shape
+#     filters = tf.constant(tf.reshape([[1, 1, 1], [1, 0, 1], [1, 1, 1]], (3, 3, 1, 1)))
+#     array = tf.constant(tf.reshape(tf.cast(array, dtype=dtype), (1, x_original, y_original, 1)))
+
+#     while True:
+#         neighbours = tf.nn.conv2d(array, filters, strides=[1, 1], padding="SAME")
+#         live_cells_2 = tf.math.multiply(
+#             tf.cast(array == 1, dtype=dtype), tf.cast(neighbours == 2, dtype=dtype)
+#         )
+#         live_cells_3 = tf.math.multiply(
+#             tf.cast(array == 1, dtype=dtype), tf.cast(neighbours == 3, dtype=dtype)
+#         )
+#         dead_cells_3 = tf.math.multiply(
+#             tf.cast(array == 0, dtype=dtype), tf.cast(neighbours == 3, dtype=dtype)
+#         )
+#         array = live_cells_2 + live_cells_3 + dead_cells_3
+#         yield array.numpy().reshape(x_original, y_original)
