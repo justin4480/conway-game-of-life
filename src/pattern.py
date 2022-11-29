@@ -1,4 +1,5 @@
 from enum import Enum
+
 import numpy as np
 
 
@@ -9,15 +10,15 @@ class PatternTypes(Enum):
 
 
 class Pattern:
-    def __init__(self, name: str, patterntype: PatternTypes, array: np.array):
+    def __init__(self, name: str, patterntype: PatternTypes, array: np.array) -> None:
         self.name = name
         self.patterntype = patterntype
         self.array = array
 
-    def get_array(self):
+    def get_array(self) -> np.array:
         return self.array
 
-    def __str__(self):
+    def __str__(self) -> str:
         return (
             f"{'='*40}\n"
             f"Name: {self.name}\n"
