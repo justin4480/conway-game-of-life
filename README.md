@@ -1,6 +1,8 @@
 # Conway's Game of Life (simulator)
 
-## What is [Conways Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)?
+![](/assets/main.gif)
+
+### What is [Conways Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)?
 
 Devised by British mathematician [John Horton Conway](https://en.wikipedia.org/wiki/John_Horton_Conway) in 1970, Game of Life is zero player game whereby an initial configuation is seeded on a 2 dimensional matrix in which each cells is either live or dead.  On each iteration of time, each cell interacts with it's eight immediate neigbours and the cells state changed based on the four rules:
 
@@ -50,28 +52,28 @@ Below are some example initial world configurations and screenshots
 
 ``` python
 # Pattern config
-N_PATTERNS = 20000
+N_PATTERNS = 30000
 P_PATTERNS = [1.0, 0.0, 0.0, 0.0]
 ```
-![](/assets/Screenshot from 2022-11-30 22-00-05.png)
+![](/assets/example1.gif)
 
 ``` python
 # Pattern config
 N_PATTERNS = 1000
 P_PATTERNS = [0.25, 0.25, 0.25, 0.25]
 ```
-![](/assets/Screenshot from 2022-11-30 22-00-49.png)
+![](/assets/example2.gif)
 
 ``` python
 # Pattern config
 N_PATTERNS = 500
 P_PATTERNS = [0.1, 0.1, 0.1, 0.7]
 ```
-![](/assets/example 3 of 3.gif)
+![](/assets/example3.gif)
 
 # Patterns:
 
-The world is seeded (populated) with 'patterns':
+The world is seeded (populated) with 'patterns'.  Here are all the patterns:
 
 ``` python
 from src.pattern import PATTERN_INVENTORY
@@ -80,6 +82,16 @@ for p in PATTERN_INVENTORY:
     print(p)
 ```
 
+
+
+\>>
+``` python
+========================================
+Name: block
+Type: PIXEL
+========================================
+[[#]]
+```
 \>>
 ``` python
 ========================================

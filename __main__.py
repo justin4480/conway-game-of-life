@@ -11,12 +11,11 @@ from src.world import World, upsample
 WIDTH = 500
 HEIGHT = 500
 PIXEL_SIZE = 1  # increase to 2 or 3 if performance is an issue
-FPS = 0.2       # set to -1 to run at maximum FPS
+FPS = 120       # set to -1 to run at maximum FPS
 
 # Pattern config
 N_PATTERNS = 500                   # number of patterns
 P_PATTERNS = [0.1, 0.1, 0.1, 0.7]  # proportion of patterns (by type)
-
 
 def main():
     pygame.init()
