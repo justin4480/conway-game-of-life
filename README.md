@@ -48,12 +48,12 @@ P_PATTERNS = [0.1, 0.1, 0.1, 0.7]  # proportion of patterns (by type)
 
 
 ### Example configurations:
-Below are some example initial world configurations and 200 frame screenshot gifs.
+Below are a couple of example initial world configurations and 200 frame screenshot gifs.
 
 ``` python
 # Pattern config
-N_PATTERNS = 30000
-P_PATTERNS = [1.0, 0.0, 0.0, 0.0]
+N_PATTERNS = 500
+P_PATTERNS = [0.1, 0.1, 0.1, 0.7]
 ```
 ![](/assets/example1.gif)
 
@@ -63,13 +63,6 @@ N_PATTERNS = 1000
 P_PATTERNS = [0.25, 0.25, 0.25, 0.25]
 ```
 ![](/assets/example2.gif)
-
-``` python
-# Pattern config
-N_PATTERNS = 500
-P_PATTERNS = [0.1, 0.1, 0.1, 0.7]
-```
-![](/assets/example3.gif)
 
 # Patterns:
 
