@@ -24,10 +24,10 @@ This implementation prioritised optimisation which was achieved using:
 Note. A working tensorflow simulation is also included; but commented out to avoid the need to include tensorflow in the requirements.txt.
 
 # Configurable parameters
-...located in __main__.py, there are some basic configurable parameters for:
+Located in __main__.py, there are some basic configurable parameters.
 
 ### <B>Screen config:</B>
-Basic view parameters.  Increasing screen resolution will impact performance, however on my non GPU dell XPS I can comfortable hit 120 FPS based on the below default config.
+Standard view parameters.  Increasing screen resolution will impact performance, however on my non GPU dell XPS I can comfortable hit 120 FPS based on the below default config.
 ``` python
 # __main__.py line 10
 # Screen config
@@ -48,7 +48,7 @@ P_PATTERNS = [0.1, 0.1, 0.1, 0.7]  # proportion of patterns (by type)
 
 
 ### Example configurations:
-Below are some example initial world configurations and screenshots
+Below are some example initial world configurations and 200 frame screenshot gifs.
 
 ``` python
 # Pattern config
