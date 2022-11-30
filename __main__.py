@@ -8,8 +8,8 @@ from src.view import View
 from src.world import World, upsample
 
 # Screen config
-WIDTH = 500
-HEIGHT = 500
+WIDTH = 600
+HEIGHT = 200
 PIXEL_SIZE = 1  # increase to 2 or 3 if performance is an issue
 FPS = 120       # set to -1 to run at maximum FPS
 
