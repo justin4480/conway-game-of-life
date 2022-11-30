@@ -4,9 +4,10 @@ import numpy as np
 
 
 class PatternTypes(Enum):
-    STILL_LIFES = 0
-    OSCILLATORS = 1
-    SPACESHIPS = 2
+    PIXEL = 0
+    STILL_LIFES = 1
+    OSCILLATORS = 2
+    SPACESHIPS = 3
 
 
 class Pattern:
@@ -37,6 +38,8 @@ def get_patterns(n_patterns: int = 1, p_patterns: list = None, replace: bool = T
 
 
 PATTERN_INVENTORY = [
+    Pattern(name="block", patterntype=PatternTypes.PIXEL, array=np.array([
+        [1]])),
     Pattern(name="block", patterntype=PatternTypes.STILL_LIFES, array=np.array([
         [1, 1],
         [1, 1]])),
