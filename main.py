@@ -17,6 +17,7 @@ FPS = 120       # set to -1 to run at maximum FPS
 N_PATTERNS = 500                   # number of patterns
 P_PATTERNS = [0.1, 0.1, 0.1, 0.7]  # proportion of patterns (by type)
 
+
 def main():
     pygame.init()
     pygame.display.set_caption("Game of life")

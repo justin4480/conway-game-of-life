@@ -1,17 +1,4 @@
 import numpy as np
-import pygame
-
-
-def array_from_text(text: str, height: int, width: int, font: str, font_size=int) -> np.array:
-    pygame.init()
-    font = pygame.font.SysFont(font, font_size)
-    img = font.render(text, True, (255, 255, 255))
-    screen = pygame.Surface((width, height))
-    screen.blit(img, (20, 20))
-    array = np.rot90(np.fliplr(pygame.surfarray.array3d(screen)))[:, :, 0] / 255
-    array[::3, :] = 0
-    array[:, ::3] = 0
-    return array
 
 
 class World:
@@ -22,9 +9,6 @@ class World:
 
     def generate_world(self) -> np.array:
         return np.zeros(shape=(self.height, self.width), dtype=np.uint8)
-
-    def populate_world_from_string(self, string: str) -> None:
-        self.array = array_from_text(string, self.height, self.width, "Times New Roman", 100)
 
     def populate_world(self, sprites: list[np.array]) -> None:
         for sprite in sprites:
